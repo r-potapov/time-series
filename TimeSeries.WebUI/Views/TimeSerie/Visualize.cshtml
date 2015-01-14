@@ -1,0 +1,78 @@
+﻿@model IEnumerable<TimeSeries.Domain.Entities.TimeSerie>
+
+@{
+    ViewBag.Title = "Визуализация";
+}
+@section styles{
+    @Styles.Render("~/Content/c3")
+}
+@section MenuMain{
+    <ul>
+        <li>@Html.ActionLink("Главная", "Index", "Home")</li>
+        <li>@Html.ActionLink("Временные ряды", "List", "TimeSerie")</li>
+        <li class="active"><a href="#">Визуализация</a></li>
+    </ul>
+}
+
+<article class="article clearfix">
+    <div class="col_75">
+        <h2>Отображение временных рядов</h2>
+        <div class="chart">
+            <div id="chart"></div>
+        </div>
+    </div>
+</article>
+
+<article class="article clearfix">
+    <div class="col_66">
+        <h4>Данные временных рядов:</h4>
+        @using (Ajax.BeginForm("Visualize", "TimeSerie", null, new AjaxOptions { HttpMethod = "Post", OnSuccess = "load" },
+            new { @class = "grid" }))
+        {
+            foreach (var serie in Model)
+            {
+                <input type="checkbox" name="TimeSeries" class="TimeSeries" value="@serie.TimeSerieId">  @serie.VectorData
+                        <div class="actions">
+                            @Html.ActionLink("Фазовый портрет", "Phase", new { serie.TimeSerieId }, new { title = "Фазовый портрет", @class = "button blue" })
+                        </div>
+
+            }
+            <br />
+            <div>
+                <input class="button orange" type="submit" value="Показать выбранные" />
+            </div>
+        }
+    </div>
+</article>
+        @section MenuBottom{
+            <ul>
+                <li>@Html.ActionLink("Главная", "Index", "TimeSerie")</li>
+                <li>@Html.ActionLink("Временные ряды", "List", "TimeSerie")</li>
+                <li class="active"><a href="#">Визуализация</a></li>
+            </ul>
+        }
+
+        @section scripts{
+            <script src="@Scripts.Url("~/Scripts/d3.js")"></script>
+            <script src="@Scripts.Url("~/Scripts/c3.js")"></script>
+            <script type="text/javascript">
+                $('.TimeSeries').click(function () {
+                    if (!this.checked) {
+                        var chartName = 'VectorData' + this.value;
+                        chart.unload([chartName]);
+                    }
+                });
+                var chart = c3.generate({
+                    bindto: '#chart',
+                    data: {
+                        columns: []
+                    }
+                });
+                chart.zoom.enable;
+                function load(data) {
+                    chart.load({
+                        columns: data
+                    });
+                }
+            </script>
+        }

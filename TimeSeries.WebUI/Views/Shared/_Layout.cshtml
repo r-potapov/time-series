@@ -1,0 +1,64 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>@ViewBag.Title</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+    @RenderSection("styles", required: false)
+</head>
+<body>
+    <div class="container">
+        <header class="header clearfix">
+            <div class="logo">@Html.ActionLink("Временные ряды", "Index", "Home")<sup style="color: #f76834"> beta</sup></div>
+            <nav class="menu_main">
+                @RenderSection("MenuMain", required: false)
+            </nav>
+            <div class="clearfix"></div>
+            <div class="menu_login">
+                @Html.Partial("_LoginPartial")
+            </div>
+        </header>
+        <br />
+        <div class="info">
+            @RenderSection("Description", required: false)
+            @if (TempData["success"] != null)
+            {
+                <article class="article clearfix">
+                    <div class="col_66">
+                        <p class="success" id="success">@TempData["success"]</p>
+                    </div>
+                </article>
+            }
+            @if (TempData["message"] != null)
+            {
+                <article class="article clearfix">
+                    <div class="col_66">
+                        <p class="message" id="message">@TempData["message"]</p>
+                    </div>
+                </article>
+            }
+            @if (TempData["warning"] != null)
+            {
+                <article class="article clearfix">
+                    <div class="col_66">
+                        <p class="warning" id="warning">@TempData["warning"]</p>
+                    </div>
+                </article>
+            }
+            @RenderBody()
+        </div>
+
+        <footer class="footer clearfix">
+            <div class="copyright"><a href="http://cssr.ru/simpliste/" target="_blank" title="Ссылка откроется в новом окне">keep it simplest</a></div>
+            <nav class="menu_bottom">
+                @RenderSection("MenuBottom", required: false)
+            </nav>
+        </footer>
+    </div>
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/jqueryval")
+    @RenderSection("scripts", required: false)
+</body>
+</html>

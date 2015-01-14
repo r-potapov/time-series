@@ -1,0 +1,243 @@
+﻿
+
+table.grid{
+    border-collapse:collapse;
+    width:100%;
+}
+
+table.grid td,table.grid th{
+    border-bottom:1px dotted gray;
+    text-align:left;
+}
+
+table.grid td.actions,table.grid th.actions{
+    text-align:right;
+}
+
+form.grid{
+    display:inline;
+    border-collapse:collapse;
+    width:100%;
+}
+
+form.grid div{
+    border-bottom:1px dotted gray;
+    text-align:left;
+}
+
+form.grid .actions{
+    text-align:right;
+}
+
+/* Styles for basic forms
+-----------------------------------------------------------*/
+form{
+    margin-bottom:0px;
+}
+
+fieldset {
+    border: 1px solid #ddd;
+    padding: 0 1.4em 1.4em 1.4em;
+    margin: 0 0 1.5em 0;
+}
+
+legend {
+    font-size: 1.2em;
+    font-weight: bold;
+}
+
+textarea {
+    min-width:370px;
+    min-height: 175px;
+}
+
+.editor-label {
+    margin: 1em 0 0 0;
+}
+
+.editor-field {
+    margin: 0.5em 0 0 0;
+}
+
+
+/* Styles for validation helpers
+-----------------------------------------------------------*/
+.field-validation-error {
+    color: #f00;
+}
+
+.field-validation-valid {
+    display: none;
+}
+
+.input-validation-error {
+    border: 1px solid #f00;
+    background-color: #fee;
+}
+
+.validation-summary-errors {
+    font-weight: bold;
+    color: #f00;
+}
+
+.validation-summary-valid {
+    display: none;
+}
+
+button,
+input,
+select,
+textarea {
+  margin: 0;
+  font-family: inherit;
+  font-size: 100%;
+}
+
+button,
+input {
+  line-height: normal;
+}
+
+button,
+select {
+  text-transform: none;
+}
+
+button,
+html input[type="button"],
+input[type="reset"],
+input[type="submit"] {
+  cursor: pointer;
+  -webkit-appearance: button;
+}
+
+button[disabled],
+html input[disabled] {
+  cursor: default;
+}
+
+input[type="checkbox"],
+input[type="radio"] {
+  padding: 0;
+  box-sizing: border-box;
+}
+
+input[type="search"] {
+  -webkit-box-sizing: content-box;
+     -moz-box-sizing: content-box;
+          box-sizing: content-box;
+  -webkit-appearance: textfield;
+}
+
+input[type="search"]::-webkit-search-cancel-button,
+input[type="search"]::-webkit-search-decoration {
+  -webkit-appearance: none;
+}
+
+button::-moz-focus-inner,
+input::-moz-focus-inner {
+  padding: 0;
+  border: 0;
+}
+
+textarea {
+  overflow: auto;
+  vertical-align: top;
+}
+
+.form-horizontal {
+  margin-left: 50px;
+}
+
+.form-control:-moz-placeholder {
+  color: #999999;
+}
+
+.form-control::-moz-placeholder {
+  color: #999999;
+}
+
+.form-control:-ms-input-placeholder {
+  color: #999999;
+}
+
+.form-control::-webkit-input-placeholder {
+  color: #999999;
+}
+
+.form-control {
+  display: block;
+  padding: 6px 12px;
+  font-size: 14px;
+  line-height: 1.428571429;
+  color: #555555;
+  vertical-align: middle;
+  background-color: #ffffff;
+  border: 1px solid #cccccc;
+  border-radius: 4px;
+  -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+          box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+  -webkit-transition: border-color ease-in-out 0.15s, box-shadow ease-in-out 0.15s;
+          transition: border-color ease-in-out 0.15s, box-shadow ease-in-out 0.15s;
+}
+
+.form-control:focus {
+  border-color: #66afe9;
+  outline: 0;
+  -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(102, 175, 233, 0.6);
+          box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(102, 175, 233, 0.6);
+}
+
+.form-control[disabled],
+.form-control[readonly],
+fieldset[disabled] .form-control {
+  cursor: not-allowed;
+  background-color: #eeeeee;
+}
+
+.menu_login {
+  /*float:right;*/
+  text-align: right;
+  margin:0.3em 0 0 0;
+  padding-right:10px;
+  font-family:'Helvetica Neue',Helvetica,Arial;
+  font-weight:bold;
+  font-size:14px;
+}
+
+.menu_login li {
+  display:inline-block;
+  padding:0 0 0 6px;
+  margin:0 0 0 2px;
+  /*border-left: 1px solid #B2B2B2;*/
+}
+
+.menu_login  li:first-child {
+  border:0;
+  padding-left:0;
+  margin-left:0;
+}
+
+.menu_login a,
+.menu_login a:visited {
+  color: #000;
+  text-decoration:none;
+}
+
+.menu_login a:hover,
+.menu_login a:visited:hover {
+  color:#f00;
+}
+
+.menu_login li.active,
+.menu_login li.active a {
+  color:#ACACAC;
+  cursor:default;
+}
+
+.not-found {
+  color:#333;
+  background:url('img/404.png') top right;
+  background-repeat: no-repeat;
+  background-color:#66afe9;
+}

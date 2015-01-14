@@ -1,0 +1,82 @@
+﻿@model IEnumerable<TimeSeries.Domain.Entities.TimeSerie>
+
+@{
+    ViewBag.Title = "Временные ряды";
+}
+
+@section MenuMain{
+    <ul>
+        <li>@Html.ActionLink("Главная", "Index", "Home")</li>
+        <li class="active"><a href="#">Временные ряды</a></li>
+        <li>@Html.ActionLink("Визуализация", "Visualize", "TimeSerie")</li>
+    </ul>
+}
+
+<article class="article clearfix">
+    <div class="col_66">
+        <h2>Управление временными рядами</h2>
+        <table class="grid">
+            <tr>
+                <td>Добавить новый временной ряд:</td>
+                <td class="actions">@Html.ActionLink("Добавить", "Create", "TimeSerie", new { @class = "button green" })</td>
+            </tr>
+        </table>
+            <p>Или загрузить файл:</p>
+        @using (Html.BeginForm("DownloadFile", "TimeSerie",
+    FormMethod.Post, new { enctype = "multipart/form-data", @class = "grid" }))
+        {
+            <div class="editor-label">   
+                @Html.ValidationMessage("Data")
+            </div>
+            
+            <br />
+                <input type="file" name="Data" />
+            <div class="actions">
+                <input type="submit" class="button orange" value="Загрузить" />
+            </div>
+        }
+        <br /><br />
+        <h4>Загруженные временные ряды (@Model.Count()):</h4>
+        <table class="grid">
+            @foreach (var serie in Model)
+            {
+                <tr>
+                    <td>
+                        <br />
+                        @Html.ActionLink(serie.VectorData, "Edit", new { serie.TimeSerieId })
+                    </td>
+                    <td class="actions">
+                        @using (Html.BeginForm("Delete", "TimeSerie"))
+                        {
+                            @Html.Hidden("TimeSerieId", serie.TimeSerieId)
+                            <input class="button red" type="submit" value="Удалить" data-confirm="Вы уверены?" />
+                        }
+                    </td>
+                </tr>
+            }
+        </table>
+
+
+
+    </div>
+</article>
+
+@section MenuBottom{
+    <ul>
+        <li>@Html.ActionLink("Главная", "Index", "TimeSerie")</li>
+        <li class="active"><a href="#">Временные ряды</a></li>
+        <li>@Html.ActionLink("Визуализация", "Visualize", "TimeSerie")</li>
+    </ul>
+}
+
+@section scripts{
+    <script>
+        jQuery(document).ready(function () {
+            jQuery('[data-confirm]').click(function (e) {
+                if (!confirm(jQuery(this).attr("data-confirm"))) {
+                    e.preventDefault();
+                }
+            });
+        });
+    </script>
+    }

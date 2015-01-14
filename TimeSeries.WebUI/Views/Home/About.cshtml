@@ -1,0 +1,62 @@
+﻿@{
+    ViewBag.Title = "О проекте";
+}
+
+@section MenuMain{
+    <ul>
+        <li>@Html.ActionLink("Главная", "Index", "Home")</li>
+        <li>@Html.ActionLink("Временные ряды", "List", "TimeSerie")</li>
+        <li>@Html.ActionLink("Визуализация", "Visualize", "TimeSerie")</li>
+    </ul>
+}
+
+@section Description{
+    <article class="hero clearfix">
+        <div class="col_100">
+            <h1 style="border: none;">Описание</h1>
+            <p>Web-ориентированный программный модуль "Временные ряды" создан для визуализации одномерных временных рядов A(n) на основе JavaScript-библиотек визуализации и программного веб-интерфейса.</p>
+            <p>Временные ряды для визуализации загружаются в виде текстового файла со значениями, n-номер строки в файле.</p>
+        </div>
+    </article>
+}
+<article class="article clearfix">
+    <div class="col_66">
+        <h3>Для визуализации в Web-модуле используются следующие JavaScript-библиотеки:</h3>
+        <ul>
+            <li>D3.js библиотека для управления документами, основанными на данных. D3 помогает визуализировать данные, используя HTML, SVG и CSS.
+                Сайт: <a href="http://d3js.org/" target="_blank" title="откроется в новом окне">d3js.org</a>
+            </li>
+            <li>C3.js - основанная на D3 библиотека для построения графиков. 
+                Сайт: <a href="http://c3js.org/" target="_blank" title="откроется в новом окне">c3js.org</a></li>
+            <li>Three.js библиотека, упрощающая программирование 3D графики на языке WebGL с шейдерами и необходимыми математическими операциями.
+                Сайт: <a href="http://threejs.org/" target="_blank" title="откроется в новом окне">threejs.org</a>
+            </li>
+        </ul>
+        <hr />
+        <h3>Дальнейшее развитие:</h3>
+        <ul>
+            <li>
+                Для графического изображения выбранной части временного ряда планируется использовать библиотеку Javascript Charts, <a href="http://www.amcharts.com/demos/line-chart-with-scroll-and-zoom/" target="_blank" title="откроется в новом окне">пример.</a>
+                Сайт: <a href="http://www.amcharts.com/javascript-charts/" target="_blank" title="откроется в новом окне">amcharts.com/javascript-charts</a>
+            </li>
+        </ul>
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+    </div>
+</article>
+
+@section MenuBottom{
+    <ul>
+        <li>@Html.ActionLink("Главная", "Index", "Home")</li>
+        <li>@Html.ActionLink("Временные ряды", "List", "TimeSerie")</li>
+        <li>@Html.ActionLink("Визуализация", "Visualize", "TimeSerie")</li>
+    </ul>
+}

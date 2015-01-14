@@ -1,0 +1,34 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2013
+VisualStudioVersion = 12.0.31101.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TimeSeries.WebUI", "TimeSeries.WebUI\TimeSeries.WebUI.csproj", "{158E0CD7-34D2-42E8-9A6F-728AA3DA639B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TimeSeries.UnitTests", "TimeSeries.UnitTests\TimeSeries.UnitTests.csproj", "{7DD33085-F7C6-4ED3-B625-6A9E4D6ACF68}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TimeSeries.Domain", "TimeSeries.Domain\TimeSeries.Domain.csproj", "{0D725503-2326-4565-B305-03C6AD9AD0F2}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{158E0CD7-34D2-42E8-9A6F-728AA3DA639B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{158E0CD7-34D2-42E8-9A6F-728AA3DA639B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{158E0CD7-34D2-42E8-9A6F-728AA3DA639B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{158E0CD7-34D2-42E8-9A6F-728AA3DA639B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7DD33085-F7C6-4ED3-B625-6A9E4D6ACF68}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7DD33085-F7C6-4ED3-B625-6A9E4D6ACF68}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7DD33085-F7C6-4ED3-B625-6A9E4D6ACF68}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7DD33085-F7C6-4ED3-B625-6A9E4D6ACF68}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0D725503-2326-4565-B305-03C6AD9AD0F2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0D725503-2326-4565-B305-03C6AD9AD0F2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0D725503-2326-4565-B305-03C6AD9AD0F2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0D725503-2326-4565-B305-03C6AD9AD0F2}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

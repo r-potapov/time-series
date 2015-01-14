@@ -1,0 +1,79 @@
+﻿@model TimeSeries.WebUI.Models.PhaseModel
+
+@{
+    ViewBag.Title = "Фазовый портрет";
+}
+@section styles{
+    @Styles.Render("~/Content/c3")
+}
+@section MenuMain{
+    <ul>
+        <li>@Html.ActionLink("Главная", "Index", "Home")</li>
+        <li>@Html.ActionLink("Временные ряды", "List", "TimeSerie")</li>
+        <li>@Html.ActionLink("Визуализация", "Visualize", "TimeSerie")</li>
+    </ul>
+}
+@section Description{
+    <article class="hero clearfix">
+        <div class="col_100">
+            <h1>Фазовый портрет</h1>
+            <p>Фазовое пространство в математике и физике — пространство, на котором представлено множество всех состояний системы, так, что каждому возможному состоянию системы соответствует точка фазового пространства.</p>
+            <p>Сущность понятия фазового пространства заключается в том, что состояние сколь угодно сложной системы представляется в нём одной единственной точкой, а эволюция (во времени) этой системы — перемещением этой точки.</p>
+            <p>След от движения изображающей точки называется фазовой траекторией. Через каждую точку фазовой плоскости 
+            проходит лишь одна фазовая траектория, за исключением особых точек. Стрелками на фазовых траекториях показывается перемещение 
+            изображающей точки с течением времени. Полная совокупность различных фазовых траекторий — это фазовый портрет.
+            Он даёт представление о совокупности всех возможных сочетаний системы и типах возможных движений в ней. 
+            Фазовый портрет удобен для рассмотрения движений макроскопических и квантовых частиц.</p>
+        </div>
+    </article>
+}
+<article class="article clearfix">
+    <div class="col_66">
+        <h2>Фазовый портрет</h2>
+    </div>       
+    <div class="col_66">
+        <h4>Данные временного ряда:</h4>
+        <p>@Model.TimeSerie.VectorData</p><br/>
+    </div>
+    <div class="col_33">
+    @using (Ajax.BeginForm("Phase", "TimeSerie", null, new AjaxOptions { HttpMethod = "Post", OnSuccess = "show" }, new { @class = "form" }))
+        {
+        <div class="form-group">
+            @Html.Hidden("TimeSerieId", @Model.TimeSerie.TimeSerieId)
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.Tau, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.TextBoxFor(x => x.Tau, new { @class = "form-control" })
+            </div>
+        </div>
+        <br />
+        <input class="button orange" type="submit" value="Показать" />
+        }
+    </div>
+    <div class="clearfix"></div>
+    
+    <div class="col_75">
+        <div class="chart">
+            <div id="chart"></div>
+        </div>
+    </div>
+    <div class="col_75">
+        <div class="chart3d" id="chart3d"></div>
+    </div>
+</article>
+
+@section MenuBottom {
+    <ul>
+        <li>@Html.ActionLink("Главная", "Index", "TimeSerie")</li>
+        <li>@Html.ActionLink("Временные ряды", "List", "TimeSerie")</li>
+        <li>@Html.ActionLink("Визуализация", "Visualize", "TimeSerie")</li>
+    </ul>
+}
+
+@section scripts{
+    <script src="@Scripts.Url("~/Scripts/d3.js")"></script>
+    <script src="@Scripts.Url("~/Scripts/c3.js")"></script>
+    <script src="@Scripts.Url("~/Scripts/three.min.js")"></script>
+    <script src="@Scripts.Url("~/Scripts/phase-generate.js")"></script>
+}
