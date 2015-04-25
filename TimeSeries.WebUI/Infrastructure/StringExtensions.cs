@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Text.RegularExpressions;
+using System.Threading;
 using System.Web;
 
 namespace TimeSeries.WebUI.Infrastructure
@@ -12,14 +14,9 @@ namespace TimeSeries.WebUI.Infrastructure
         public static string ToDoubleString(this double[] s)
         {
             string result = "";
-            if (s!=null&&s.Length>0)
+            if (s != null && s.Length > 0)
             {
-                foreach (var item in s)
-                {
-                    if (!String.IsNullOrWhiteSpace(result))
-                        result += ",";
-                    result += item.ToString().Replace(",", ".");
-                }
+                result = String.Join(" ", s);
             }
             return result.Trim();
         }
@@ -31,7 +28,7 @@ namespace TimeSeries.WebUI.Infrastructure
             {
                 s = Regex.Replace(s, "[\r\n|\n]", " ", RegexOptions.Compiled);
                 s = Regex.Replace(s, @"[\s+]", " ", RegexOptions.Compiled);
-                number = Regex.Split(s, @"\s");
+                number = Regex.Split(s, @"\s").Where(p => p.Length > 0).ToArray();
             }
             return number;
         }
@@ -39,10 +36,14 @@ namespace TimeSeries.WebUI.Infrastructure
         // Converting to double
         public static double ToDouble(this string s)
         {
+            var newCulture = new CultureInfo(Thread.CurrentThread.CurrentCulture.Name);
+            newCulture.NumberFormat.NumberDecimalSeparator = ".";
+            Thread.CurrentThread.CurrentCulture = newCulture;
+
             double number = 0;
             if (!String.IsNullOrWhiteSpace(s))
             {
-                s = s.Replace(".", ",").Trim();
+                s = s.Replace(",", ".").Trim();
                 double.TryParse(s, out number);
             }
             return number;
@@ -54,12 +55,13 @@ namespace TimeSeries.WebUI.Infrastructure
             List<double> numbers = new List<double>();
             if (s != null && s.Length > 0)
             {
-                int sLength = s.Length;
-                for (int i = 0; i < sLength; i++)
-                {
-                    if (!String.IsNullOrWhiteSpace(s[i]))
-                        numbers.Add(s[i].ToDouble());
-                }
+                //int sLength = s.Length;
+                //for (int i = 0; i < sLength; i++)
+                //{
+                //    if (!String.IsNullOrWhiteSpace(s[i]))
+                //        numbers.Add(s[i].ToDouble());
+                //}
+                numbers = s.Select(x => x.ToDouble()).ToList();
             }
             return numbers.ToArray();
         }

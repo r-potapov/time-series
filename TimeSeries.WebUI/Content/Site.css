@@ -1,4 +1,17 @@
-﻿
+﻿.middle {
+    display:-moz-inline-box;
+    display:inline-block;
+    vertical-align:middle;
+    zoom:1;
+}
+.helper {
+    display:-moz-inline-box;
+    display:inline-block;
+    vertical-align:middle;
+    height:100%;
+    width:0px;
+    zoom:1;
+}
 
 table.grid{
     border-collapse:collapse;

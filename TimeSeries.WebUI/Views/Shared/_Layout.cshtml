@@ -3,6 +3,7 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <link href="~/Content/img/favicon.ico" rel="shortcut icon">
     <title>@ViewBag.Title</title>
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
@@ -11,7 +12,9 @@
 <body>
     <div class="container">
         <header class="header clearfix">
-            <div class="logo">@Html.ActionLink("Временные ряды", "Index", "Home")<sup style="color: #f76834"> beta</sup></div>
+            <div class="logo">
+                <a href="/" title="На главную"><img src="~/Content/img/logo.png" alt="" /></a>
+            </div>
             <nav class="menu_main">
                 @RenderSection("MenuMain", required: false)
             </nav>
