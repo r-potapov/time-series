@@ -51,9 +51,13 @@ namespace TimeSeries.WebUI.Controllers
                 string vectorData = new StreamReader(data.InputStream).ReadToEnd();
                 if (!String.IsNullOrWhiteSpace(vectorData))
                 {
-                    TimeSerie timeSerie = new TimeSerie();
-                    timeSerie.VectorData = vectorData;//.Replace("\r\n", " ").Trim();
-                    timeSerie.User_Id = currentUser.Id;
+                    TimeSerie timeSerie = new TimeSerie
+                    {
+                        VectorData = vectorData,
+                        VectorName = "FromFile_" + DateTime.Now.ToShortDateString(),
+                        User_Id = currentUser.Id
+                    };
+
                     if (ModelState.IsValid)
                     {
                         repository.SaveTimeSerie(timeSerie);
@@ -128,14 +132,13 @@ namespace TimeSeries.WebUI.Controllers
                         && p.User.Id == currentUser.Id);
                         if (timeSerie != null)
                         {
-                            string key = "VectorData" + timeSerie.TimeSerieId.ToString();
+                            string key = timeSerie.VectorName;
                             if (!timeSerieList.ContainsKey(key))
                             {
                                 ArrayList arr = new ArrayList();
                                 arr.Add(key);
                                 arr.AddRange(timeSerie.VectorData.ToStringArray().ToDouble());
                                 timeSerieList.Add(key, arr);
-                                //.ToDoubleString();
                             }
                         }
                     }
@@ -150,26 +153,33 @@ namespace TimeSeries.WebUI.Controllers
             return RedirectToAction("Visualize");
         }
 
-        public ActionResult Phase(int timeSerieId)
+        public ActionResult Phase(int? timeSerieId)
         {
-            TimeSerie timeSerie = repository.TimeSeries.FirstOrDefault(p => p.TimeSerieId == timeSerieId
-                        && p.User.Id == currentUser.Id);
-            if (timeSerie == null)
+            TimeSerie timeSerie = null;
+            if (timeSerieId != null && timeSerieId>0)
             {
-                return new NotFoundResult();                
+                timeSerie = repository.TimeSeries.FirstOrDefault(p => p.TimeSerieId == timeSerieId
+                          && p.User.Id == currentUser.Id);
+                if (timeSerie == null)
+                {
+                    return new NotFoundResult();
+                }
             }
-
-            PhaseModel phase = new PhaseModel { TimeSerie = timeSerie, Tau = 2 };
+            PhaseModel phase = new PhaseModel { TimeSerie = timeSerie, Tau = 2, TimeSerieSource = currentUser.TimeSeries.ToList() };
             return View(phase);
         }
-
 
         [HttpPost]
         public ActionResult Phase(int timeSerieId, int Tau = 1)
         {
             TimeSerie timeSerie = repository.TimeSeries.FirstOrDefault(p => p.TimeSerieId == timeSerieId
                         && p.User.Id == currentUser.Id);
-            PhaseModel phase = new PhaseModel { TimeSerie = timeSerie, Tau = Tau };
+
+            if (timeSerie == null)
+            {
+                return new NotFoundResult();
+            }
+
             if (Request.IsAjaxRequest())
             {
                 var vectorData = timeSerie.VectorData.ToStringArray().Select(e => new { value = e.ToDouble() }).ToList();
@@ -185,8 +195,16 @@ namespace TimeSeries.WebUI.Controllers
                     phaseTimeSerie.y.Add(vectorData[i + Tau].value);
                     phaseTimeSerie.z.Add(Math.Pow(phaseTimeSerie.y.Last(), 2));
                 }
-                return Json(phaseTimeSerie);
+                var result = new
+                {
+                    Name = timeSerie.VectorName,
+                    Data = timeSerie.VectorData,
+                    PhaseTimeSerie = phaseTimeSerie
+                };
+                return Json(result);
             }
+
+            PhaseModel phase = new PhaseModel { TimeSerie = timeSerie, Tau = Tau, TimeSerieSource = currentUser.TimeSeries.ToList() };
             return View(phase);
         }
 

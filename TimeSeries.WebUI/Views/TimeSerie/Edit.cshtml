@@ -1,40 +1,58 @@
 ﻿@model TimeSeries.Domain.Entities.TimeSerie
 
 @{
-    ViewBag.Title = "Управление временным рядом";
+    if (Model.TimeSerieId > 0)
+    {
+        ViewBag.Title = "Изменение временного ряда";
+    }
+    else
+    {
+        ViewBag.Title = "Создание временного ряда";
+    }
 }
 
 @section MenuMain{
     <ul>
         <li>@Html.ActionLink("Главная", "Index", "Home")</li>
-        <li>@Html.ActionLink("Временные ряды", "List", "TimeSerie")</li>
-        <li>@Html.ActionLink("Визуализация", "Visualize", "TimeSerie")</li>
+        <li>@Html.ActionLink("Описание", "About", "Home")</li>
     </ul>
 }
 <article class="article clearfix">
     <div class="col_66">
-        <h2>Управление временным рядом</h2>
+        <h2>@ViewBag.Title</h2>
 
         @using (Html.BeginForm("Edit", "TimeSerie", FormMethod.Post))
         {
             @Html.Hidden("TimeSerieId", @Model.TimeSerieId)
-            @Html.EditorFor(x=>x.VectorData)
-            <br />
-            <div>
-                <input type="submit" class="button green" value="Сохранить" />   |
-                @Html.ActionLink("Вернуться к списку", "List", "TimeSerie", new { @class = "button orange" })
+            <div class="col_50">
+                <div class="form-group">
+                    @Html.LabelFor(model => model.VectorName, htmlAttributes: new { @class = "control-label" })
+                    @Html.TextBoxFor(x => x.VectorName, new { @class = "col_66" })<br />
+                </div>
+                <div class="clearfix"></div><br />
+                <div class="form-group">
+                    @Html.LabelFor(model => model.VectorData, htmlAttributes: new { @class = "control-label" })
+                    @Html.EditorFor(x => x.VectorData, new { @class = "form-control" })
+                </div><br />
+                <div class="form-group">
+                    <input type="submit" class="button green" value="Сохранить" />   |
+                    @Html.ActionLink("Вернуться к списку", "List", "TimeSerie", new { @class = "button orange" })
+                </div>
+
             </div>
 
-            <br /><br />
+            <div class="col_50 left">
+                @Html.ValidationSummary("Не удалось сохранить данные", htmlAttributes: new { @class = "warning" })
+            </div>
+            
         }
 
-        
-    </div>
+                <br /><br /><br />
+            </div>
 </article>
 @section MenuBottom{
     <ul>
         <li>@Html.ActionLink("Главная", "Index", "TimeSerie")</li>
-        <li>@Html.ActionLink("Временные ряды", "List", "TimeSerie")</li>
-        <li>@Html.ActionLink("Визуализация", "Visualize", "TimeSerie")</li>
+        <li>@Html.ActionLink("Описание", "About", "Home")</li>
     </ul>
 }

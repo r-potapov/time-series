@@ -13,5 +13,7 @@ namespace TimeSeries.WebUI.Models
         [Required]
         [Display(Name = "T (тау)")]
         public int Tau { get; set; }
+        [Display(Name = "Временной ряд")]
+        public IEnumerable<TimeSerie> TimeSerieSource { get; set; }
     }
 }

@@ -142,6 +142,11 @@
   <ItemGroup>
     <Content Include="Content\c3.css" />
     <Content Include="Content\img\404.png" />
+    <Content Include="Content\img\favicon.ico" />
+    <Content Include="Content\img\footer.svg" />
+    <Content Include="Content\img\header.svg" />
+    <Content Include="Content\img\logo.png" />
+    <Content Include="Content\img\overlay.png" />
     <Content Include="Content\reset.css" />
     <Content Include="Content\Site.css" />
     <Content Include="Content\skin.css" />

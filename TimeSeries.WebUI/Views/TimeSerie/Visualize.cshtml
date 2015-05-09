@@ -9,8 +9,7 @@
 @section MenuMain{
     <ul>
         <li>@Html.ActionLink("Главная", "Index", "Home")</li>
-        <li>@Html.ActionLink("Временные ряды", "List", "TimeSerie")</li>
-        <li class="active"><a href="#">Визуализация</a></li>
+        <li>@Html.ActionLink("Описание", "About", "Home")</li>
     </ul>
 }
 
@@ -31,7 +30,7 @@
         {
             foreach (var serie in Model)
             {
-                <input type="checkbox" name="TimeSeries" class="TimeSeries" value="@serie.TimeSerieId">  @serie.VectorData
+                <input type="checkbox" id="@serie.VectorName" name="TimeSeries" class="TimeSeries" value="@serie.TimeSerieId">  @serie.VectorName
                         <div class="actions">
                             @Html.ActionLink("Фазовый портрет", "Phase", new { serie.TimeSerieId }, new { title = "Фазовый портрет", @class = "button blue" })
                         </div>
@@ -47,8 +46,7 @@
         @section MenuBottom{
             <ul>
                 <li>@Html.ActionLink("Главная", "Index", "TimeSerie")</li>
-                <li>@Html.ActionLink("Временные ряды", "List", "TimeSerie")</li>
-                <li class="active"><a href="#">Визуализация</a></li>
+                <li>@Html.ActionLink("Описание", "About", "Home")</li>
             </ul>
         }
 
@@ -58,7 +56,7 @@
             <script type="text/javascript">
                 $('.TimeSeries').click(function () {
                     if (!this.checked) {
-                        var chartName = 'VectorData' + this.value;
+                        var chartName = this.id;                        
                         chart.unload([chartName]);
                     }
                 });

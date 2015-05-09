@@ -19,7 +19,7 @@
                 @RenderSection("MenuMain", required: false)
             </nav>
             <div class="clearfix"></div>
-            <div class="menu_login">
+            <div class="menu_login nav-sub">
                 @Html.Partial("_LoginPartial")
             </div>
         </header>
@@ -63,5 +63,14 @@
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/jqueryval")
     @RenderSection("scripts", required: false)
+    <script>
+        $(document).ready(function () {
+            $(".menu_login li [href]").each(function () {
+                if (this.href == window.location.href) {
+                    $(this).css("color", "#ACACAC");
+                }
+            });
+        });
+    </script>
 </body>
 </html>

@@ -24,6 +24,7 @@ namespace TimeSeries.Domain.Concrete
                 TimeSerie dbEntry = context.TimeSeries.Find(timeSerie.TimeSerieId);
                 if (dbEntry != null)
                 {
+                    dbEntry.VectorName = timeSerie.VectorName;
                     dbEntry.VectorData = timeSerie.VectorData;
                 }
             }

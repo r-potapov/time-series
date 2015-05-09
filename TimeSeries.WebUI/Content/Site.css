@@ -1,4 +1,31 @@
-﻿.middle {
+﻿.nav-sub ul ul {
+    position:absolute;
+    background-color:#fff;
+    max-width:250px;
+    border:thin solid #849c92;
+    margin:0;
+    padding:0;
+    display:none;
+    border-radius:5px;
+    -moz-border-radius:5px;
+    -webkit-border-radius:5px;
+    z-index:5;
+}
+.nav-sub ul li:hover ul {
+    position:absolute;
+    display:block;
+}
+.nav-sub ul ul li {
+    padding:5px 15px;
+    border-top:2px solid #321;
+    background:none;
+    display:block;
+}
+.nav-sub ul ul li a {
+    border:none;
+}
+
+.middle {
     display:-moz-inline-box;
     display:inline-block;
     vertical-align:middle;
@@ -59,9 +86,17 @@ legend {
     font-weight: bold;
 }
 
-textarea {
-    min-width:370px;
-    min-height: 175px;
+input[type="text"], textarea {    
+    border: 1px solid #cccccc;
+    border-radius: 4px;
+    padding: 6px 12px;
+    font-size: 14px;
+}
+
+textarea {    
+    display:block;  
+    min-height: 175px;   
+    width:64%;
 }
 
 .editor-label {
@@ -84,8 +119,8 @@ textarea {
 }
 
 .input-validation-error {
-    border: 1px solid #f00;
     background-color: #fee;
+    border-color: #f00 !important;
 }
 
 .validation-summary-errors {
@@ -99,8 +134,7 @@ textarea {
 
 button,
 input,
-select,
-textarea {
+select {
   margin: 0;
   font-family: inherit;
   font-size: 100%;

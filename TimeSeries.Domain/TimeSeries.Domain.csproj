@@ -91,6 +91,10 @@
     <Compile Include="Migrations\201412201201597_TimeSerieProperty.Designer.cs">
       <DependentUpon>201412201201597_TimeSerieProperty.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201505091036507_VectorNameProperty.cs" />
+    <Compile Include="Migrations\201505091036507_VectorNameProperty.Designer.cs">
+      <DependentUpon>201505091036507_VectorNameProperty.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -101,6 +105,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201412201201597_TimeSerieProperty.resx">
       <DependentUpon>201412201201597_TimeSerieProperty.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201505091036507_VectorNameProperty.resx">
+      <DependentUpon>201505091036507_VectorNameProperty.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

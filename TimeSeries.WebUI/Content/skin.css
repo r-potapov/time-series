@@ -392,50 +392,37 @@ a.button:visited {
 }
 
 .warning {
-  color:#fff;
+  border:3px solid #ff0000;
+  color:#000;
   padding:8px 14px;
-  background:#c40005;
-  border-color:#c40005;
-  position:relative;
-  -webkit-box-shadow: #d1d1d1 6px 6px 10px;
-  -moz-box-shadow: #d1d1d1 6px 6px 10px;
-  box-shadow: #d1d1d1 6px 6px 10px;
+  background:transperent;
+  font-size: 16px;
+  -webkit-box-shadow:#666 1px 1px 2px;
+  -moz-box-shadow:#666 1px 1px 2px;
+  box-shadow:#666 1px 1px 2px;
+  font-weight:normal;
 }
 .success {
+  border:3px solid #399f16;
   color:#000;
-  background:#89BFDC;
-  border-color:#89BFDC;
+  background:transperent;
   padding:8px 14px;
-  position:relative;
-  -webkit-box-shadow: #d1d1d1 6px 6px 10px;
-  -moz-box-shadow: #d1d1d1 6px 6px 10px;
-  box-shadow: #d1d1d1 6px 6px 10px;
+  font-size: 16px;
+  -webkit-box-shadow:#666 1px 1px 2px;
+  -moz-box-shadow:#666 1px 1px 2px;
+  box-shadow:#666 1px 1px 2px;
+  font-weight:normal;
 }
 .message {
+  border:3px solid #717161;
   color:#000;
-  background:#eee;
-  border-color:#eee;
+  background:transperent;
   padding:8px 14px;
-  position:relative;
-  -webkit-box-shadow: #f4f4f4 6px 6px 10px;
-  -moz-box-shadow: #f4f4f4 6px 6px 10px;
-  box-shadow: #f4f4f4 6px 6px 10px;
-}
-
-.warning:before,
-.success:before,
-.message:before {
-  content:"";
-  display:block;
-  width:0px;
-  height:0px;
-  position:absolute;
-  bottom:-10px;
-  left:14px;
-  border-top: 10px solid black;
-  border-top-color: inherit;
-  border-left: 0px dotted transparent;
-  border-right: 10px solid transparent;
+  font-size: 16px;
+  -webkit-box-shadow:#666 1px 1px 2px;
+  -moz-box-shadow:#666 1px 1px 2px;
+  box-shadow:#666 1px 1px 2px;
+  font-weight:normal;
 }
 
 

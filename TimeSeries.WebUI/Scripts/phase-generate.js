@@ -1,4 +1,4 @@
-Array.prototype.max = function () {
+﻿Array.prototype.max = function () {
     return Math.max.apply(Math, this);
 };
 
@@ -32,8 +32,13 @@ function load2d(data) {
 }
 
 function show(data) {
-    load2d(data);
-    load3d(data);
+    var descr = '<h4>Данные временного ряда ' + data.Name + ':</h4>';
+    descr += '<p>' + data.Data + '</p>';
+
+    $('#serieInfo').html(descr);
+
+    load2d(data.PhaseTimeSerie);
+    load3d(data.PhaseTimeSerie);
 }
 
 

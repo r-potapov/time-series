@@ -9,8 +9,7 @@
 @section MenuMain{
     <ul>
         <li>@Html.ActionLink("Главная", "Index", "Home")</li>
-        <li>@Html.ActionLink("Временные ряды", "List", "TimeSerie")</li>
-        <li>@Html.ActionLink("Визуализация", "Visualize", "TimeSerie")</li>
+        <li>@Html.ActionLink("Описание", "About", "Home")</li>
     </ul>
 }
 @section Description{
@@ -31,21 +30,39 @@
     <div class="col_66">
         <h2>Фазовый портрет</h2>
     </div>       
-    <div class="col_66">
-        <h4>Данные временного ряда:</h4>
-        <p>@Model.TimeSerie.VectorData</p><br/>
+    <div id="serieInfo" class="col_66">
+        @if (Model.TimeSerie!=null)
+        {
+            @: <h4>Данные временного ряда @Model.TimeSerie.VectorName:</h4>
+            @: <p>@Model.TimeSerie.VectorData</p><br />
+        }
+        else
+        {
+            if (Model.TimeSerieSource == null || Model.TimeSerieSource.Count() == 0)
+            {
+                @: <p>Временные ряды не созданы.</p> 
+                @: <p>Для создания временного ряда воспользуйтесь разделом @Html.ActionLink("Временные ряды", "List", "TimeSerie") 
+                @: или скопируйте данные в @Html.ActionLink("форму создания временного ряда", "Create", "TimeSerie") </p>
+            }
+            else
+            {
+                @: <p>Выберите временной ряд для отображения фазового портрета.</p><br />
+            }
+        }   
     </div>
     <div class="col_33">
     @using (Ajax.BeginForm("Phase", "TimeSerie", null, new AjaxOptions { HttpMethod = "Post", OnSuccess = "show" }, new { @class = "form" }))
         {
         <div class="form-group">
-            @Html.Hidden("TimeSerieId", @Model.TimeSerie.TimeSerieId)
-        </div>
-        <div class="form-group">
             @Html.LabelFor(model => model.Tau, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.TextBoxFor(x => x.Tau, new { @class = "form-control" })
             </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.TimeSerieSource)<br />
+            @Html.DropDownList("timeSerieId", new SelectList(Model.TimeSerieSource, "TimeSerieId", "VectorName"),
+                 new { @class = "form-control" })
         </div>
         <br />
         <input class="button orange" type="submit" value="Показать" />
@@ -66,8 +83,7 @@
 @section MenuBottom {
     <ul>
         <li>@Html.ActionLink("Главная", "Index", "TimeSerie")</li>
-        <li>@Html.ActionLink("Временные ряды", "List", "TimeSerie")</li>
-        <li>@Html.ActionLink("Визуализация", "Visualize", "TimeSerie")</li>
+        <li>@Html.ActionLink("Описание", "About", "Home")</li>
     </ul>
 }
 

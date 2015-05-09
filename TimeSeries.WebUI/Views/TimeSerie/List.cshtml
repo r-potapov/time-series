@@ -7,8 +7,7 @@
 @section MenuMain{
     <ul>
         <li>@Html.ActionLink("Главная", "Index", "Home")</li>
-        <li class="active"><a href="#">Временные ряды</a></li>
-        <li>@Html.ActionLink("Визуализация", "Visualize", "TimeSerie")</li>
+        <li>@Html.ActionLink("Описание", "About", "Home")</li>
     </ul>
 }
 
@@ -43,7 +42,7 @@
                 <tr>
                     <td>
                         <br />
-                        @Html.ActionLink(serie.VectorData, "Edit", new { serie.TimeSerieId })
+                        @Html.ActionLink(serie.VectorName, "Edit", new { serie.TimeSerieId })
                     </td>
                     <td class="actions">
                         @using (Html.BeginForm("Delete", "TimeSerie"))
@@ -64,8 +63,7 @@
 @section MenuBottom{
     <ul>
         <li>@Html.ActionLink("Главная", "Index", "TimeSerie")</li>
-        <li class="active"><a href="#">Временные ряды</a></li>
-        <li>@Html.ActionLink("Визуализация", "Visualize", "TimeSerie")</li>
+        <li>@Html.ActionLink("Описание", "About", "Home")</li>
     </ul>
 }
 
